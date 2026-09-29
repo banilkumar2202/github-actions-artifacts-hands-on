@@ -27,8 +27,7 @@ jobs:
     - name: Download text File from Bhuild Job
       uses: actions/download-artifact@v4
       with:
-        name: Read Hello txt file
-        run: ./artifacts
+        name: hello-artifact
 
     - name: Read Hello txt file   
       run: cat ./artifacts/hello.txt

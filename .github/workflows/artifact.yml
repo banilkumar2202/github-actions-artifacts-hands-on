@@ -3,7 +3,7 @@ name: Workflow Demo
 on: push
 
 jobs:
-  build:
+  build-job1:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,13 +19,16 @@ jobs:
         name: hello-artifact
         path: hello.txt
 
-   download: 
-     needs: build
-     runs-on: ubuntu-latest
+ download-job: 
+   needs: build-job1
+   runs-on: ubuntu-latest
 
-     steps:
-     - name: Download text File from Bhuild Job
-       uses: actions/download-artifact@v3
+   steps:
+   - name: Download text File from Bhuild Job
+     uses: actions/download-artifact@v3
+     with:
+       name: Read Hello txt file
+       run: ./artifacts
 
-     - name: Read Hello txt file
-       run: cat ./artifacts/hello.txt
+   - name: Read Hello txt file   
+     run: cat ./artifacts/hello.txt
